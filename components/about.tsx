@@ -5,46 +5,44 @@ import { motion, useInView } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Zap, Shield, Users, Sparkles } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 gsap.registerPlugin(ScrollTrigger)
-
-const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "24/7", label: "Support Available" },
-  { value: "10+", label: "Tech Stacks" },
-]
-
-const values = [
-  {
-    icon: Zap,
-    title: "Speed & Efficiency",
-    description:
-      "Rapid development cycles with agile methodology. We ship fast without sacrificing quality.",
-  },
-  {
-    icon: Shield,
-    title: "Security First",
-    description:
-      "Enterprise-grade security built into every layer — from authentication to data encryption.",
-  },
-  {
-    icon: Users,
-    title: "Client Partnership",
-    description:
-      "We work as an extension of your team, aligning every decision with your business goals.",
-  },
-  {
-    icon: Sparkles,
-    title: "Innovation Driven",
-    description:
-      "Leveraging cutting-edge technologies and AI to give you a competitive advantage.",
-  },
-]
 
 export function About() {
   const headingRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
+  const { t } = useI18n()
+
+  const stats = [
+    { value: t("about.stat1Value"), label: t("about.stat1Label") },
+    { value: t("about.stat2Value"), label: t("about.stat2Label") },
+    { value: t("about.stat3Value"), label: t("about.stat3Label") },
+    { value: t("about.stat4Value"), label: t("about.stat4Label") },
+  ]
+
+  const values = [
+    {
+      icon: Zap,
+      title: t("about.speedTitle"),
+      description: t("about.speedDesc"),
+    },
+    {
+      icon: Shield,
+      title: t("about.securityTitle"),
+      description: t("about.securityDesc"),
+    },
+    {
+      icon: Users,
+      title: t("about.clientTitle"),
+      description: t("about.clientDesc"),
+    },
+    {
+      icon: Sparkles,
+      title: t("about.innovationTitle"),
+      description: t("about.innovationDesc"),
+    },
+  ]
 
   useEffect(() => {
     if (headingRef.current) {
@@ -91,15 +89,13 @@ export function About() {
         {/* Heading */}
         <div ref={headingRef} className="mb-16 text-center opacity-0">
           <span className="mb-4 inline-block font-mono text-xs font-medium uppercase tracking-widest text-primary">
-            Why stakio.ai
+            {t("about.tag")}
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-            Smart Tech. Simple Flows.
+            {t("about.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg text-pretty">
-            We combine deep technical expertise with a design-first mindset to
-            deliver digital solutions that actually work — for your users and
-            your bottom line.
+            {t("about.subtitle")}
           </p>
         </div>
 
@@ -138,7 +134,7 @@ function ValueCard({
   value,
   index,
 }: {
-  value: (typeof values)[0]
+  value: { icon: React.ElementType; title: string; description: string }
   index: number
 }) {
   const ref = useRef<HTMLDivElement>(null)

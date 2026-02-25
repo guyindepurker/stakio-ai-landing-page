@@ -2,22 +2,29 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-
-const footerLinks = {
-  Services: [
-    "Automation Bots",
-    "UI/UX Design",
-    "Web Applications",
-    "Native Apps",
-    "AI Solutions",
-  ],
-  Company: ["About", "Contact", "Blog", "Careers"],
-  Connect: ["WhatsApp", "Telegram", "LinkedIn", "GitHub"],
-}
+import { useI18n } from "@/lib/i18n"
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
+  const { t } = useI18n()
+
+  const footerLinks = {
+    [t("footer.servicesTitle")]: [
+      t("services.automationBots"),
+      t("services.uiux"),
+      t("services.webApps"),
+      t("services.nativeApps"),
+      t("services.ai"),
+    ],
+    [t("footer.companyTitle")]: [
+      t("footer.about"),
+      t("footer.contact"),
+      t("footer.blog"),
+      t("footer.careers"),
+    ],
+    [t("footer.connectTitle")]: ["WhatsApp", "Telegram", "LinkedIn", "GitHub"],
+  }
 
   return (
     <motion.footer
@@ -37,14 +44,12 @@ export function Footer() {
                   S
                 </span>
               </div>
-              <span className="font-mono text-lg font-bold tracking-tight text-foreground">
+              <span dir="ltr" className="font-mono text-lg font-bold tracking-tight text-foreground">
                 stakio<span className="text-primary">.ai</span>
               </span>
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Smart Tech. Simple Flows.
-              <br />
-              Building digital solutions that transform businesses.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
+              {t("footer.tagline")}
             </p>
           </div>
 
@@ -73,20 +78,20 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-xs text-muted-foreground">
-            {`© ${new Date().getFullYear()} stakio.ai — All rights reserved.`}
+            {`\u00A9 ${new Date().getFullYear()} stakio.ai \u2014 ${t("footer.rights")}`}
           </p>
           <div className="flex gap-6">
             <a
               href="#"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
-              Privacy Policy
+              {t("footer.privacy")}
             </a>
             <a
               href="#"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
-              Terms of Service
+              {t("footer.terms")}
             </a>
           </div>
         </div>

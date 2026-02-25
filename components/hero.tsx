@@ -5,11 +5,13 @@ import { motion } from "framer-motion"
 import { gsap } from "gsap"
 import { ArrowDown } from "lucide-react"
 import { ParticleBackground } from "@/components/particle-background"
+import { useI18n } from "@/lib/i18n"
 
 export function Hero() {
   const headingRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
+  const { t } = useI18n()
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
@@ -52,7 +54,7 @@ export function Hero() {
         >
           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
           <span className="text-xs font-medium text-muted-foreground">
-            Smart Tech. Simple Flows.
+            {t("hero.badge")}
           </span>
         </motion.div>
 
@@ -60,18 +62,16 @@ export function Hero() {
           ref={headingRef}
           className="font-mono text-4xl font-bold leading-tight tracking-tight text-foreground opacity-0 sm:text-5xl md:text-6xl lg:text-7xl text-balance"
         >
-          We Build the
+          {t("hero.titleLine1")}
           <br />
-          <span className="text-primary">Digital Future</span>
+          <span className="text-primary">{t("hero.titleLine2")}</span>
         </h1>
 
         <p
           ref={subtitleRef}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground opacity-0 sm:text-lg md:text-xl text-pretty"
         >
-          From automation bots and AI solutions to full-stack applications and
-          stunning UI/UX — we turn complex technology into simple, powerful
-          workflows.
+          {t("hero.subtitle")}
         </p>
 
         <div ref={ctaRef} className="mt-10 flex flex-col items-center gap-4 opacity-0 sm:flex-row sm:justify-center">
@@ -79,13 +79,13 @@ export function Hero() {
             href="#services"
             className="rounded-lg bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary"
           >
-            Explore Services
+            {t("hero.exploreServices")}
           </a>
           <a
             href="#contact"
             className="rounded-lg border border-border bg-secondary/50 px-8 py-3.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-secondary"
           >
-            Start a Project
+            {t("hero.startProject")}
           </a>
         </div>
 
@@ -102,7 +102,7 @@ export function Hero() {
             aria-label="Scroll to services"
           >
             <span className="text-xs font-medium tracking-wider uppercase">
-              Discover
+              {t("hero.discover")}
             </span>
             <motion.div
               animate={{ y: [0, 6, 0] }}

@@ -7,6 +7,7 @@ import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { FloatingOrbs } from "@/components/floating-orbs"
 import { SectionDivider } from "@/components/section-divider"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 
 export default function Page() {
   return (
@@ -25,6 +26,7 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }

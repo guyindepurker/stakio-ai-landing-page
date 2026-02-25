@@ -4,18 +4,20 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import { Moon, Sun, Menu, X } from "lucide-react"
-
-const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-]
+import { useI18n } from "@/lib/i18n"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const { t, locale, setLocale } = useI18n()
+
+  const navLinks = [
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.contact"), href: "#contact" },
+  ]
 
   useEffect(() => {
     setMounted(true)
@@ -43,7 +45,7 @@ export function Navbar() {
               S
             </span>
           </div>
-          <span className="font-mono text-lg font-bold tracking-tight text-foreground">
+          <span dir="ltr" className="font-mono text-lg font-bold tracking-tight text-foreground">
             stakio<span className="text-primary">.ai</span>
           </span>
         </a>
@@ -59,6 +61,50 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+
+          {/* Language Toggle */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setLocale("en")}
+              className={`flex h-9 w-9 items-center justify-center rounded-lg border transition-colors ${
+                locale === "en"
+                  ? "border-primary bg-primary/10"
+                  : "border-border bg-secondary hover:bg-accent"
+              }`}
+              aria-label="Switch to English"
+              title="English"
+            >
+              <svg width="20" height="14" viewBox="0 0 60 42" className="rounded-sm">
+                <rect width="60" height="42" fill="#B22234"/>
+                <rect y="3.23" width="60" height="3.23" fill="#fff"/>
+                <rect y="9.69" width="60" height="3.23" fill="#fff"/>
+                <rect y="16.15" width="60" height="3.23" fill="#fff"/>
+                <rect y="22.61" width="60" height="3.23" fill="#fff"/>
+                <rect y="29.07" width="60" height="3.23" fill="#fff"/>
+                <rect y="35.53" width="60" height="3.23" fill="#fff"/>
+                <rect width="24" height="22.61" fill="#3C3B6E"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => setLocale("he")}
+              className={`flex h-9 w-9 items-center justify-center rounded-lg border transition-colors ${
+                locale === "he"
+                  ? "border-primary bg-primary/10"
+                  : "border-border bg-secondary hover:bg-accent"
+              }`}
+              aria-label="Switch to Hebrew"
+              title="עברית"
+            >
+              <svg width="20" height="14" viewBox="0 0 60 42" className="rounded-sm">
+                <rect width="60" height="42" fill="#fff"/>
+                <rect y="0" width="60" height="8" fill="#0038b8"/>
+                <rect y="34" width="60" height="8" fill="#0038b8"/>
+                <polygon points="30,11 36.5,22.25 23.5,22.25" fill="none" stroke="#0038b8" strokeWidth="1.8"/>
+                <polygon points="30,31 23.5,19.75 36.5,19.75" fill="none" stroke="#0038b8" strokeWidth="1.8"/>
+              </svg>
+            </button>
+          </div>
+
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary text-foreground transition-colors hover:bg-accent"
@@ -70,12 +116,52 @@ export function Navbar() {
             href="#contact"
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary"
           >
-            Get in Touch
+            {t("nav.getInTouch")}
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-3 md:hidden">
+          {/* Language Toggle Mobile */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setLocale("en")}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors ${
+                locale === "en"
+                  ? "border-primary bg-primary/10"
+                  : "border-border bg-secondary"
+              }`}
+              aria-label="Switch to English"
+            >
+              <svg width="16" height="11" viewBox="0 0 60 42" className="rounded-sm">
+                <rect width="60" height="42" fill="#B22234"/>
+                <rect y="3.23" width="60" height="3.23" fill="#fff"/>
+                <rect y="9.69" width="60" height="3.23" fill="#fff"/>
+                <rect y="16.15" width="60" height="3.23" fill="#fff"/>
+                <rect y="22.61" width="60" height="3.23" fill="#fff"/>
+                <rect y="29.07" width="60" height="3.23" fill="#fff"/>
+                <rect y="35.53" width="60" height="3.23" fill="#fff"/>
+                <rect width="24" height="22.61" fill="#3C3B6E"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => setLocale("he")}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors ${
+                locale === "he"
+                  ? "border-primary bg-primary/10"
+                  : "border-border bg-secondary"
+              }`}
+              aria-label="Switch to Hebrew"
+            >
+              <svg width="16" height="11" viewBox="0 0 60 42" className="rounded-sm">
+                <rect width="60" height="42" fill="#fff"/>
+                <rect y="0" width="60" height="8" fill="#0038b8"/>
+                <rect y="34" width="60" height="8" fill="#0038b8"/>
+                <polygon points="30,11 36.5,22.25 23.5,22.25" fill="none" stroke="#0038b8" strokeWidth="1.8"/>
+                <polygon points="30,31 23.5,19.75 36.5,19.75" fill="none" stroke="#0038b8" strokeWidth="1.8"/>
+              </svg>
+            </button>
+          </div>
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary text-foreground"
@@ -118,7 +204,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
               >
-                Get in Touch
+                {t("nav.getInTouch")}
               </a>
             </div>
           </motion.div>

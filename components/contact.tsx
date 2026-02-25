@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Send, CheckCircle2 } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,6 +14,7 @@ export function Contact() {
   const formRef = useRef<HTMLFormElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: "-50px" })
+  const { t } = useI18n()
 
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
@@ -43,6 +45,14 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    const subject = encodeURIComponent(`New message from ${formData.name}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )
+    const mailtoLink = `mailto:stakioai@gmail.com?subject=${subject}&body=${body}`
+    window.open(mailtoLink, "_blank")
+
     // Animate the form out
     if (formRef.current) {
       gsap.to(formRef.current, {
@@ -61,14 +71,13 @@ export function Contact() {
       <div className="mx-auto max-w-6xl px-6">
         <div ref={headingRef} className="mb-16 text-center opacity-0">
           <span className="mb-4 inline-block font-mono text-xs font-medium uppercase tracking-widest text-primary">
-            Get in Touch
+            {t("contact.tag")}
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-            {"Let's Build Something Great"}
+            {t("contact.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg text-pretty">
-            Have a project in mind? Drop us a message and we will get back to
-            you within 24 hours.
+            {t("contact.subtitle")}
           </p>
         </div>
 
@@ -90,7 +99,7 @@ export function Contact() {
                   htmlFor="name"
                   className="text-sm font-medium text-foreground"
                 >
-                  Name
+                  {t("contact.nameLabel")}
                 </label>
                 <input
                   id="name"
@@ -100,7 +109,7 @@ export function Contact() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  placeholder="Your name"
+                  placeholder={t("contact.namePlaceholder")}
                   className="rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
                 />
               </div>
@@ -110,7 +119,7 @@ export function Contact() {
                   htmlFor="email"
                   className="text-sm font-medium text-foreground"
                 >
-                  Email
+                  {t("contact.emailLabel")}
                 </label>
                 <input
                   id="email"
@@ -120,7 +129,7 @@ export function Contact() {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  placeholder="you@company.com"
+                  placeholder={t("contact.emailPlaceholder")}
                   className="rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
                 />
               </div>
@@ -130,7 +139,7 @@ export function Contact() {
                   htmlFor="message"
                   className="text-sm font-medium text-foreground"
                 >
-                  Message
+                  {t("contact.messageLabel")}
                 </label>
                 <textarea
                   id="message"
@@ -140,7 +149,7 @@ export function Contact() {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  placeholder="Tell us about your project..."
+                  placeholder={t("contact.messagePlaceholder")}
                   className="resize-none rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
                 />
               </div>
@@ -149,7 +158,7 @@ export function Contact() {
                 type="submit"
                 className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary"
               >
-                Send Message
+                {t("contact.send")}
                 <Send size={16} />
               </button>
             </form>
@@ -164,11 +173,10 @@ export function Contact() {
                 <CheckCircle2 className="text-primary" size={28} />
               </div>
               <h3 className="font-mono text-xl font-bold text-foreground">
-                Message Sent
+                {t("contact.sent")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Thanks for reaching out! We will get back to you within 24
-                hours.
+                {t("contact.thanks")}
               </p>
               <button
                 onClick={() => {
@@ -177,7 +185,7 @@ export function Contact() {
                 }}
                 className="mt-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
               >
-                Send another message
+                {t("contact.another")}
               </button>
             </motion.div>
           )}

@@ -16,77 +16,15 @@ import {
   ShoppingCart,
   Search,
 } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 gsap.registerPlugin(ScrollTrigger)
-
-const services = [
-  {
-    icon: Bot,
-    title: "Automation Bots",
-    description:
-      "WhatsApp & Telegram bots that streamline your customer interactions, support, and workflows 24/7.",
-  },
-  {
-    icon: Palette,
-    title: "UI/UX Design",
-    description:
-      "Human-centered design for SaaS platforms, applications, and digital products that users love.",
-  },
-  {
-    icon: Globe,
-    title: "Web Applications",
-    description:
-      "Full-stack web applications built with modern frameworks, optimized for performance and scale.",
-  },
-  {
-    icon: Smartphone,
-    title: "Native Applications",
-    description:
-      "Cross-platform and native mobile apps for iOS and Android with seamless user experiences.",
-  },
-  {
-    icon: Brain,
-    title: "AI Solutions",
-    description:
-      "Connect, integrate, and manage AI services — from custom models to intelligent automation pipelines.",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & Consulting",
-    description:
-      "Cloud architecture, infrastructure consulting, and strategic tech advisory for growing businesses.",
-  },
-  {
-    icon: Server,
-    title: "DevOps Services",
-    description:
-      "CI/CD pipelines, infrastructure as code, monitoring, and deployment automation for reliable systems.",
-  },
-  {
-    icon: Code2,
-    title: "Landing Pages",
-    description:
-      "High-converting landing pages with stunning animations and pixel-perfect responsive design.",
-  },
-  {
-    icon: ShoppingCart,
-    title: "eCommerce Shops",
-    description:
-      "Custom WordPress and Shopify stores built to sell — with seamless checkout and inventory management.",
-  },
-  {
-    icon: Search,
-    title: "Website Building & SEO",
-    description:
-      "High-performance websites engineered for search engines — from technical SEO audits to on-page optimization and organic growth.",
-  },
-]
 
 function ServiceCard({
   service,
   index,
 }: {
-  service: (typeof services)[0]
+  service: { icon: React.ElementType; title: string; description: string }
   index: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -121,6 +59,20 @@ function ServiceCard({
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
+  const { t } = useI18n()
+
+  const services = [
+    { icon: Bot, title: t("services.automationBots"), description: t("services.automationBotsDesc") },
+    { icon: Palette, title: t("services.uiux"), description: t("services.uiuxDesc") },
+    { icon: Globe, title: t("services.webApps"), description: t("services.webAppsDesc") },
+    { icon: Smartphone, title: t("services.nativeApps"), description: t("services.nativeAppsDesc") },
+    { icon: Brain, title: t("services.ai"), description: t("services.aiDesc") },
+    { icon: Cloud, title: t("services.cloud"), description: t("services.cloudDesc") },
+    { icon: Server, title: t("services.devops"), description: t("services.devopsDesc") },
+    { icon: Code2, title: t("services.landing"), description: t("services.landingDesc") },
+    { icon: ShoppingCart, title: t("services.ecommerce"), description: t("services.ecommerceDesc") },
+    { icon: Search, title: t("services.seo"), description: t("services.seoDesc") },
+  ]
 
   useEffect(() => {
     if (!headingRef.current) return
@@ -151,14 +103,13 @@ export function Services() {
       <div className="mx-auto max-w-6xl px-6">
         <div ref={headingRef} className="mb-16 text-center opacity-0">
           <span className="mb-4 inline-block font-mono text-xs font-medium uppercase tracking-widest text-primary">
-            What We Do
+            {t("services.tag")}
           </span>
           <h2 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-            End-to-End Digital Services
+            {t("services.title")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg text-pretty">
-            From concept to deployment, we cover every layer of your digital
-            product with precision engineering and thoughtful design.
+            {t("services.subtitle")}
           </p>
         </div>
 

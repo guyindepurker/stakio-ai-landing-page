@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { useI18n } from "@/lib/i18n"
 
 const technologies = [
   "React",
@@ -25,6 +26,7 @@ const technologies = [
 export function TechMarquee() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true })
+  const { t } = useI18n()
 
   return (
     <motion.div
@@ -36,7 +38,7 @@ export function TechMarquee() {
     >
       <div className="mx-auto max-w-6xl px-6">
         <p className="mb-8 text-center font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">
-          Technologies We Work With
+          {t("tech.title")}
         </p>
       </div>
 

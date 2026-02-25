@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { DM_Sans, Space_Grotesk } from 'next/font/google'
+import { DM_Sans, Space_Grotesk, Assistant } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { I18nProvider } from '@/lib/i18n'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -13,6 +14,12 @@ const dmSans = DM_Sans({
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space-grotesk',
+  display: 'swap',
+})
+
+const assistantFont = Assistant({
+  subsets: ['hebrew', 'latin'],
+  variable: '--font-assistant',
   display: 'swap',
 })
 
@@ -55,9 +62,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <body
-        className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        className={`${dmSans.variable} ${spaceGrotesk.variable} ${assistantFont.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -65,7 +72,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <I18nProvider>
+            {children}
+          </I18nProvider>
         </ThemeProvider>
         <Analytics />
       </body>

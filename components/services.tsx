@@ -14,6 +14,7 @@ import {
   Server,
   Code2,
   ShoppingCart,
+  Search,
 } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -72,6 +73,12 @@ const services = [
     title: "eCommerce Shops",
     description:
       "Custom WordPress and Shopify stores built to sell — with seamless checkout and inventory management.",
+  },
+  {
+    icon: Search,
+    title: "Website Building & SEO",
+    description:
+      "High-performance websites engineered for search engines — from technical SEO audits to on-page optimization and organic growth.",
   },
 ]
 

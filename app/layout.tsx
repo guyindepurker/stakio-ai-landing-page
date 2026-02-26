@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { GoogleTagManager } from '@next/third-parties/google'
 import { DM_Sans, Space_Grotesk, Assistant } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -63,6 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
+      <GoogleTagManager gtmId="HCQB5BQQ4N" />
       <body
         className={`${dmSans.variable} ${spaceGrotesk.variable} ${assistantFont.variable} font-sans antialiased`}
       >

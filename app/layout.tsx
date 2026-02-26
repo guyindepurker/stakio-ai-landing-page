@@ -64,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <GoogleTagManager gtmId="HCQB5BQQ4N" />
+      <GoogleTagManager gtmId="G-HCQB5BQQ4N" />
       <body
         className={`${dmSans.variable} ${spaceGrotesk.variable} ${assistantFont.variable} font-sans antialiased`}
       >

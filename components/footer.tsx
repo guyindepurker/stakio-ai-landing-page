@@ -82,16 +82,16 @@ export function Footer() {
           </p>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="/privacy-policy"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               {t("footer.privacy")}
             </a>
             <a
-              href="#"
+              href="/cookie-policy"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
-              {t("footer.terms")}
+              {t("footer.cookies")}
             </a>
           </div>
         </div>

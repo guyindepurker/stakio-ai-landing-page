@@ -123,7 +123,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "footer.careers": "Careers",
     "footer.rights": "All rights reserved.",
     "footer.privacy": "Privacy Policy",
-    "footer.terms": "Terms of Service",
+    "footer.cookies": "Cookie Policy",
   },
   he: {
     // Navbar
@@ -237,6 +237,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "footer.rights": "\u05DB\u05DC \u05D4\u05D6\u05DB\u05D5\u05D9\u05D5\u05EA \u05E9\u05DE\u05D5\u05E8\u05D5\u05EA.",
     "footer.privacy": "\u05DE\u05D3\u05D9\u05E0\u05D9\u05D5\u05EA \u05E4\u05E8\u05D8\u05D9\u05D5\u05EA",
     "footer.terms": "\u05EA\u05E0\u05D0\u05D9 \u05E9\u05D9\u05DE\u05D5\u05E9",
+    "footer.cookies": "מדיניות עוגיות",
+
   },
 }
 

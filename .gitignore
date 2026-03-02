@@ -3,5 +3,10 @@ node_modules
 .git
 node_modules/
 .vscode
+.next
+.next/
+dist
+dist/
+
 .vscode/
 

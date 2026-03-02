@@ -1,10 +1,32 @@
 import type { Metadata, Viewport } from 'next'
-import { GoogleTagManager } from '@next/third-parties/google'
+import Script from 'next/script'
 import { DM_Sans, Space_Grotesk, Assistant } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { I18nProvider } from '@/lib/i18n'
 import './globals.css'
+
+const GA_ID = 'G-HCQB5BQQ4N'
+
+
+const Gtag = () => (
+       <head>
+        {/* gtag.js – loads the library */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        {/* initialise it */}
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+      </head>
+)
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -64,7 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <GoogleTagManager gtmId="G-HCQB5BQQ4N" />
+      <Gtag />
       <body
         className={`${dmSans.variable} ${spaceGrotesk.variable} ${assistantFont.variable} font-sans antialiased`}
       >

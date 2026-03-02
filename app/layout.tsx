@@ -88,7 +88,7 @@ export default function RootLayout({
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <Gtag />
       <body
-        className={`${dmSans.variable} ${spaceGrotesk.variable} ${assistantFont.variable} font-sans antialiased`}
+        className={`${assistantFont.variable} ${dmSans.variable} ${spaceGrotesk.variable}  font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

@@ -123,3 +123,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* switch to Assistant font for Hebrew locale */
+html[lang="he"] {
+  /* font variables are injected by the font components in layout.tsx */
+  --font-sans: var(--font-assistant);
+}

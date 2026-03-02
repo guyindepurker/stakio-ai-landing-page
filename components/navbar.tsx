@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { useI18n } from "@/lib/i18n"
+import logo from "/logo.png"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -40,14 +41,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <span className="font-mono text-sm font-bold text-primary-foreground">
-              S
-            </span>
-          </div>
-          <span dir="ltr" className="font-mono text-lg font-bold tracking-tight text-foreground">
-            stakio<span className="text-primary">.ai</span>
-          </span>
+           <img src="/logo.png" alt="stakio.ai logo" width="200px" />
         </a>
 
         {/* Desktop Links */}
